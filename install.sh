@@ -1,5 +1,5 @@
 #!/bin/bash
-# install.sh - Bản cài đặt vạn năng (Hỗ trợ Ubuntu 20.04, 22.04 và 24.04+)
+# install.sh - Bản vạn năng (Đã sửa lỗi dpkg-deb và tối ưu cho Focal/Noble)
 
 set -e
 
@@ -13,14 +13,14 @@ echo "🌍 Phát hiện hệ điều hành: Ubuntu $OS_CODENAME"
 
 echo "🚀 [1/4] Cài đặt công cụ hỗ trợ..."
 sudo apt-get update
-sudo apt-get install -y xvfb libxss1 libnss3 wget tar curl ffmpeg dpkg-deb
+# Đã xóa dpkg-deb vì nó nằm trong gói dpkg có sẵn
+sudo apt-get install -y xvfb libxss1 libnss3 wget tar curl ffmpeg
 
-# Xử lý thư viện đồ họa theo phiên bản Ubuntu
+# Xử lý thư viện đồ họa và codecs theo phiên bản
 if [[ "$OS_CODENAME" == "noble" ]]; then
-    echo "⚠️  Phát hiện Ubuntu 24.04 (Noble). Đang kích hoạt chế độ vá lỗi thư viện cũ..."
+    echo "⚠️  Phát hiện Ubuntu 24.04 (Noble). Đang kích hoạt chế độ vá lỗi..."
     sudo apt-get install -y libgtk-3-0t64 libasound2t64 libnuma1
     
-    # Tải và giải nén thư viện Legacy vào thư mục riêng
     mkdir -p "$LIBS_DIR"
     cd "$LIBS_DIR"
     declare -A DEBS=(
@@ -32,16 +32,15 @@ if [[ "$OS_CODENAME" == "noble" ]]; then
         ["libwavpack1"]="http://azure.archive.ubuntu.com/ubuntu/pool/main/w/wavpack/libwavpack1_5.2.0-1ubuntu0.1_amd64.deb"
     )
     for pkg in "${!DEBS[@]}"; do
-        echo "Đang tải gói legacy: $pkg..."
         curl -L -o "$pkg.deb" "${DEBS[$pkg]}"
-        dpkg-deb -x "$pkg.deb" .
+        dpkg -x "$pkg.deb" .
         find usr/lib/x86_64-linux-gnu/ -name "*.so*" -exec mv {} . \;
         rm "$pkg.deb"
     done
     rm -rf usr/
     cd "$REPO_DIR"
 else
-    echo "✅ Ubuntu phiên bản cũ. Cài đặt thư viện hệ thống trực tiếp..."
+    echo "✅ Môi trường Focal (20.04) chuẩn. Cài đặt trực tiếp từ kho hệ thống..."
     sudo apt-get install -y libgtk-3-0 libasound2 libnuma1 libaom0 libvpx6 libx264-155 libx265-179 libflite1 libwavpack1 || true
 fi
 
@@ -49,12 +48,11 @@ echo "🚀 [2/4] Cài đặt thư viện Python..."
 pip install watchdog google-api-python-client google-auth-oauthlib google-auth httplib2 opencv-python psutil Pillow
 
 echo "🚀 [3/4] Tải và cấu hình VideoSubFinder..."
-# Link Release chính xác của bạn
 VSF_LINK="https://github.com/lionc2240/autovsf-codespaces/releases/download/VideoSubFinder_6.10_ubu20.04.tar.xz/VideoSubFinder_6.10_ubu20.04.tar.xz"
 VSF_FILE="VideoSubFinder_6.10_ubu20.04.tar.xz"
 
 if [ ! -d "$VSF_DIR" ]; then
-    echo "Đang tải VideoSubFinder từ GitHub Release..."
+    echo "Đang tải VideoSubFinder..."
     curl -L -o "$PARENT_DIR/$VSF_FILE" "$VSF_LINK"
     tar -xf "$PARENT_DIR/$VSF_FILE" -C "$PARENT_DIR/"
     rm "$PARENT_DIR/$VSF_FILE"
@@ -63,7 +61,6 @@ fi
 # Cấu hình file .run
 cat <<EOF > "$VSF_DIR/VideoSubFinderWXW.run"
 #!/bin/sh
-# Thứ tự ưu tiên thư viện: legacy_libs -> current folder -> system
 export LD_LIBRARY_PATH="$LIBS_DIR:\$PWD:\$LD_LIBRARY_PATH"
 if [ -z "\$DISPLAY" ]; then
     xvfb-run -a ./VideoSubFinderWXW "\$@"
@@ -77,7 +74,5 @@ chmod +x run.sh headless.py ocr.py install.sh
 chmod +x "$VSF_DIR/VideoSubFinderWXW" "$VSF_DIR/VideoSubFinderWXW.run"
 
 echo "==========================================================="
-echo "🎉 CÀI ĐẶT HOÀN TẤT!"
-echo "Tool đã được tối ưu cho môi trường Ubuntu $OS_CODENAME."
-echo "Lệnh chạy: python3 headless.py <video.mp4>"
+echo "🎉 CÀI ĐẶT HOÀN TẤT TRÊN $OS_CODENAME!"
 echo "==========================================================="
