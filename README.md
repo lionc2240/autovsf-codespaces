@@ -10,6 +10,8 @@ Công cụ hỗ trợ trích xuất phụ đề cứng từ video thông qua Vid
 
 Môi trường Codespaces không có màn hình hiển thị (Headless), vì vậy bạn sẽ sử dụng bộ công cụ dòng lệnh (CLI) để đạt hiệu quả cao nhất.
 
+👉 **Xem hướng dẫn cài đặt và sử dụng chi tiết:** [docs/SETUP_CODESPACES.md](docs/SETUP_CODESPACES.md)
+
 ### 1. Cài đặt môi trường
 Chạy lệnh sau để cài đặt các thư viện cần thiết:
 ```bash
@@ -18,6 +20,9 @@ pip install watchdog google-api-python-client google-auth-oauthlib google-auth h
 
 ### 2. Thiết lập Google Cloud (Bắt buộc cho OCR)
 Bạn cần file `credentials.json` để tool có thể sử dụng Google Drive làm bộ máy OCR.
+
+👉 **Xem hướng dẫn chi tiết tại:** [docs/GOOGLE_SETUP.md](docs/GOOGLE_SETUP.md)
+
 1. Tạo dự án trên [Google Cloud Console](https://console.cloud.google.com/).
 2. Bật **Google Drive API**.
 3. Tại mục **Credentials**, tạo **OAuth client ID** (Application type: Desktop app).
