@@ -18,5 +18,5 @@
       ]
     }
   },
-  "postCreateCommand": "chmod +x install.sh && echo 'Môi trường Focal đã sẵn sàng. Hãy chạy ./install.sh để hoàn tất.' && sudo apt update && sudo apt install -y nodejs npm && npm install -g @google/gemini-cli"
+  "postCreateCommand": "sudo apt update && sudo apt install -y nodejs npm && chmod +x install.sh && npm install -g @google/gemini-cli"
 }
