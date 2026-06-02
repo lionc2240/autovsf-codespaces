@@ -219,7 +219,7 @@ def _log_cli(msg):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Sử dụng: python3 autovsf/ocr.py <thư_mục_ảnh> [file_srt_đầu_ra]")
+        print("Sử dụng: python3 ocr.py <thư_mục_ảnh> [file_srt_đầu_ra]")
         sys.exit(1)
     
     img_dir = sys.argv[1]

@@ -6,7 +6,7 @@
 
 if [ -z "$DISPLAY" ]; then
     echo "Phát hiện môi trường không có màn hình (headless). Sử dụng xvfb-run..."
-    xvfb-run -a python3 autovsf/main.py "$@"
+    xvfb-run -a python3 main.py "$@"
 else
-    python3 autovsf/main.py "$@"
+    python3 main.py "$@"
 fi

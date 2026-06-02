@@ -1,5 +1,9 @@
 #!/bin/bash
+<<<<<<< HEAD
 # install.sh - Bản vạn năng TỐI ƯU (Đã sửa lỗi APT và dpkg-deb)
+=======
+# install.sh 
+>>>>>>> aba1a23 (refactor: move scripts to root and update environment configuration)
 
 set -e
 
@@ -11,13 +15,15 @@ OS_CODENAME=$(lsb_release -sc)
 
 echo "🌍 Phát hiện hệ điều hành: Ubuntu $OS_CODENAME"
 
-echo "🚀 [1/4] Dọn dẹp và cập nhật kho lưu trữ..."
-sudo apt-get clean
-sudo apt-get update
-
-echo "🚀 [2/4] Cài đặt thư viện hệ thống..."
-# Cài đặt các công cụ cơ bản
-sudo apt-get install -y xvfb libxss1 libnss3 wget tar curl ffmpeg
+echo "🚀 [1/4] Cài đặt công cụ hỗ trợ..."
+# Sửa lỗi GPG cho Yarn nếu tồn tại (thường gặp trong Codespaces)
+if [ -f /etc/apt/sources.list.d/yarn.list ]; then
+    echo "Fixing Yarn GPG key..."
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor --yes -o /usr/share/keyrings/yarn-archive-keyring.gpg 2>/dev/null || true
+fi
+sudo apt-get update || true
+# Đã xóa dpkg-deb vì nó nằm trong gói dpkg có sẵn
+sudo apt-get install -y xvfb libxss1 libnss3 wget tar curl ffmpeg libxtst6 libxrender1 libxcomposite1 libasound2 libdbus-glib-1-2
 
 # Xử lý theo phiên bản Ubuntu
 if [[ "$OS_CODENAME" == "noble" ]]; then

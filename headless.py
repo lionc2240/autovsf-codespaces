@@ -68,6 +68,6 @@ def run_headless(video_path, top=0.3, bottom=0.0, left=0.0, right=1.0):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Sử dụng: python3 autovsf/headless.py <đường_dẫn_video>")
+        print("Sử dụng: python3 headless.py <đường_dẫn_video>")
     else:
         run_headless(sys.argv[1])

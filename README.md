@@ -21,19 +21,19 @@ Bạn cần file `credentials.json` để tool có thể sử dụng Google Driv
 1. Tạo dự án trên [Google Cloud Console](https://console.cloud.google.com/).
 2. Bật **Google Drive API**.
 3. Tại mục **Credentials**, tạo **OAuth client ID** (Application type: Desktop app).
-4. Tải file JSON về, đổi tên thành `credentials.json` và bỏ vào thư mục `autovsf/`.
+4. Tải file JSON về, đổi tên thành `credentials.json` và bỏ vào thư mục gốc.
 5. **Quan trọng:** Nhấn **PUBLISH APP** trong mục OAuth Consent Screen để tránh lỗi xác thực.
 
 ### 3. Khởi chạy toàn bộ (Scan Video + OCR)
 Chỉ cần 1 lệnh duy nhất để quét video và tạo file phụ đề:
 ```bash
-python3 autovsf/headless.py video-test_0.5.mp4
+python3 headless.py video-test_0.5.mp4
 ```
 
 ### 4. Chỉ chạy riêng bước OCR
 Nếu bạn đã có ảnh trong thư mục kết quả (`_out/RGBImages`):
 ```bash
-python3 autovsf/ocr.py <đường_dẫn_thư_mục_ảnh> [tên_file_output.srt]
+python3 ocr.py <đường_dẫn_thư_mục_ảnh> [tên_file_output.srt]
 ```
 
 ### ⚠️ Cách xác thực Google trên Codespaces (Mẹo quan trọng)
@@ -43,7 +43,7 @@ Do Google chặn phương thức đăng nhập cũ (OOB), tool sử dụng phư�
 3. Trình duyệt sẽ chuyển đến một trang báo lỗi (ví dụ: `http://localhost:8080/?state=...`).
 4. **Copy toàn bộ địa chỉ URL** của trang lỗi đó từ thanh địa chỉ trình duyệt.
 5. Quay lại Terminal, dán vào dòng **Paste URL here** và nhấn Enter.
-6. Token sẽ được lưu vào `autovsf/token.json` để sử dụng mãi mãi về sau.
+6. Token sẽ được lưu vào `token.json` để sử dụng mãi mãi về sau.
 
 ---
 

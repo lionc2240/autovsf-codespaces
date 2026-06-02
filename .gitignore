@@ -9,6 +9,9 @@ credentials.json
 token.json
 client_secret*.json
 .env
+*.mp4
+*.txt
+*.srt
 
 # Data folders
 raw_texts/
