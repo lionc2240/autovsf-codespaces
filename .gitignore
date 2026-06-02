@@ -1,0 +1,45 @@
+# Checkpoints/
+checkpoints/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# settings.json and token.json
+settings.json
+credentials.json
+token.json
+client_secret*.json
+.env
+
+#  temp folders
+raw_texts/
+texts/
+RGBImages/
+TXTImages/
+*_out/
+output\ srt/
+
+# log files
+*.log
+
+# os
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# CLI Agent files, folders
+.antigravitycli/
+.gemini/
+.qwen/
+.claude/
+GEMINI.md
+AGENTS.md
+
+# VideoSubFinder executables (auto-download scripts install.ps1)
+program/
