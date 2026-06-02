@@ -1,7 +1,7 @@
 #!/bin/bash
-# install.sh - Thiết lập tự động AutoVSF (Phiên bản tự sửa lỗi .run)
+# install.sh - Bản tối ưu cho repo autovsf-codespaces (chạy tại root)
 
-set -e # Dừng nếu có lỗi
+set -e
 
 echo "🚀 [1/4] Cài đặt thư viện hệ thống..."
 sudo apt-get update
@@ -14,18 +14,18 @@ echo "🚀 [3/4] Tải và tối ưu hóa VideoSubFinder..."
 VSF_LINK="https://github.com/lionc2240/autovsf-codespaces/releases/download/VideoSubFinder_6.10_ubu20.04.tar.xz/VideoSubFinder_6.10_ubu20.04.tar.xz"
 VSF_FILE="VideoSubFinder_6.10_ubu20.04.tar.xz"
 
-cd ..
-if [ ! -d "VideoSubFinder" ]; then
-    echo "Đang tải bản gốc..."
-    wget -O $VSF_FILE $VSF_LINK
+# Tải VSF vào thư mục cùng cấp với repo để tránh Git theo dõi
+if [ ! -d "../VideoSubFinder" ]; then
+    echo "Đang tải bản gốc vào thư mục cha..."
+    wget -O ../$VSF_FILE $VSF_LINK
     echo "Đang giải nén..."
-    tar -xf $VSF_FILE
-    rm $VSF_FILE
+    tar -xf ../$VSF_FILE -C ../
+    rm ../$VSF_FILE
 fi
 
-# Bước quan trọng: Ghi đè file .run bằng nội dung thông minh đã sửa
-echo "Đang tối ưu hóa file khởi chạy cho Codespaces..."
-cat <<EOF > VideoSubFinder/VideoSubFinderWXW.run
+# Vá lỗi file .run
+echo "Đang tối ưu hóa file khởi chạy..."
+cat <<EOF > ../VideoSubFinder/VideoSubFinderWXW.run
 #!/bin/sh
 export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:"\$PWD"
 if [ -z "\$DISPLAY" ]; then
@@ -36,11 +36,9 @@ fi
 EOF
 
 echo "🚀 [4/4] Cấp quyền thực thi..."
-cd autovsf
 chmod +x run.sh headless.py ocr.py install.sh
 chmod +x ../VideoSubFinder/VideoSubFinderWXW ../VideoSubFinder/VideoSubFinderWXW.run
 
 echo "==========================================================="
-echo "🎉 CÀI ĐẶT THÀNH CÔNG!"
-echo "Môi trường của bạn đã được tối ưu hóa hoàn toàn."
+echo "🎉 CÀI ĐẶT THÀNH CÔNG TẠI GỐC REPO!"
 echo "==========================================================="

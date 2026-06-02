@@ -22,7 +22,7 @@ DEFAULT: dict = {
     "folder_id":          "",
     "credentials_file":   DEFAULT_CLIENT_SECRET,
     "token_file":         DEFAULT_TOKEN_FILE,
-    "vsf_path":           "/workspaces/markdown-editor/VideoSubFinder/VideoSubFinderWXW.run",
+    "vsf_path":           os.path.abspath(os.path.join(BASE_DIR, "..", "VideoSubFinder", "VideoSubFinderWXW.run")),
     "threads":            20,
     "delete_raw_texts":   False,
     "delete_texts":       False,
