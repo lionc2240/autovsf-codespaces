@@ -1,9 +1,5 @@
 #!/bin/bash
-<<<<<<< HEAD
-# install.sh - Bản vạn năng TỐI ƯU (Đã sửa lỗi APT và dpkg-deb)
-=======
 # install.sh 
->>>>>>> aba1a23 (refactor: move scripts to root and update environment configuration)
 
 set -e
 
