@@ -1,3 +1,5 @@
+<img src="/images/autovsf-codespaces.jpg" width="100%" alt="AUTOVSF CODESPACES Banner">
+
 # AutoVSF - VideoSubFinder & OCR Pipeline (Codespaces Edition)
 
 Công cụ hỗ trợ trích xuất phụ đề cứng từ video thông qua VideoSubFinder và nhận diện chữ (OCR) bằng Google Drive API. Phiên bản này được tối ưu hóa đặc biệt cho môi trường **GitHub Codespaces** và **Linux Headless**.
