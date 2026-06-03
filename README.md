@@ -11,19 +11,13 @@ Công cụ hỗ trợ trích xuất phụ đề cứng từ video thông qua Vid
 
 ---
 
-## 🐧 Hướng dẫn cho GitHub Codespaces / Linux CLI
+## 🐧 Hướng dẫn cho GitHub Codespaces
 
-Môi trường Codespaces không có màn hình hiển thị (Headless), vì vậy bạn sẽ sử dụng bộ công cụ dòng lệnh (CLI) để đạt hiệu quả cao nhất.
+Môi trường Codespaces đã được cấu hình tự động. Bạn không cần cài đặt thêm bất kỳ thư viện nào thủ công.
 
-👉 **Xem hướng dẫn cài đặt và sử dụng chi tiết:** [docs/SETUP_CODESPACES.md](docs/SETUP_CODESPACES.md)
+👉 **Xem hướng dẫn chi tiết tại:** [docs/SETUP_CODESPACES.md](docs/SETUP_CODESPACES.md)
 
-### 1. Cài đặt môi trường
-Chạy lệnh sau để cài đặt các thư viện cần thiết:
-```bash
-pip install watchdog google-api-python-client google-auth-oauthlib google-auth httplib2 opencv-python psutil Pillow
-```
-
-### 2. Thiết lập Google Cloud (Bắt buộc cho OCR)
+### 1. Thiết lập Google Cloud (Bắt buộc cho OCR)
 Bạn cần file `credentials.json` để tool có thể sử dụng Google Drive làm bộ máy OCR.
 
 👉 **Xem hướng dẫn chi tiết tại:** [docs/GOOGLE_SETUP.md](docs/GOOGLE_SETUP.md)
@@ -34,13 +28,13 @@ Bạn cần file `credentials.json` để tool có thể sử dụng Google Driv
 4. Tải file JSON về, đổi tên thành `credentials.json` và bỏ vào thư mục gốc.
 5. **Quan trọng:** Nhấn **PUBLISH APP** trong mục OAuth Consent Screen để tránh lỗi xác thực.
 
-### 3. Khởi chạy toàn bộ (Scan Video + OCR)
+### 2. Khởi chạy toàn bộ (Scan Video + OCR)
 Chỉ cần 1 lệnh duy nhất để quét video và tạo file phụ đề:
 ```bash
 python3 headless.py video-test_0.5.mp4
 ```
 
-### 4. Chỉ chạy riêng bước OCR
+### 3. Chỉ chạy riêng bước OCR
 Nếu bạn đã có ảnh trong thư mục kết quả (`_out/RGBImages`):
 ```bash
 python3 ocr.py <đường_dẫn_thư_mục_ảnh> [tên_file_output.srt]
@@ -57,26 +51,8 @@ Do Google chặn phương thức đăng nhập cũ (OOB), tool sử dụng phư�
 
 ---
 
-## 💻 Hướng dẫn cho Windows (Giao diện GUI)
-
-### Cài đặt nhanh (One-Click)
-Mở PowerShell (Admin) và dán:
-```powershell
-irm https://raw.githubusercontent.com/lionc2240/autovsf/main/install.ps1 | iex
-```
-
-### Chạy giao diện
-```powershell
-python main.py
-```
-- **Tab 1 (VSF):** Tách ảnh phụ đề tự động. Hỗ trợ tạo Crop Profile trực quan.
-- **Tab 2 (OCR):** Tự động tải ảnh lên Drive và ghép thành file `.srt`.
-- **Tab 3 (Settings):** Quản lý cấu hình và `credentials.json`.
-
----
-
 ## 🌟 Tính năng nổi bật
-- **Đa nền tảng:** Chạy mượt mà trên cả Windows (GUI) và Linux (CLI/Headless).
+- **Tối ưu cho Codespaces:** Chạy mượt mà trong môi trường Linux Headless.
 - **Tối ưu tốc độ:** Hỗ trợ đa luồng (multi-threading) cho OCR, xử lý hàng trăm ảnh chỉ trong vài giây.
 - **Tự động hóa:** Tích hợp quy trình từ lúc đọc video đến lúc xuất file `.srt` hoàn chỉnh.
 - **Thông minh:** ETA thời gian thực, tự động quản lý token và dọn dẹp thư mục tạm.

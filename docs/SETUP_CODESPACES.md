@@ -4,6 +4,8 @@ Chào bạn! Nếu bạn đang đọc file này sau một thời gian dài khôn
 
 🔗 **Repo:** [https://github.com/lionc2240/autovsf-codespaces.git](https://github.com/lionc2240/autovsf-codespaces.git)
 
+> ⚠️ Lưu ý: Khởi chạy Codespaces lần đầu sẽ mất khoảng 10 phút để build môi trường.
+
 ---
 
 ## 🚀 1. Khởi tạo lại môi trường (Mỗi lần tạo Codespace mới)
