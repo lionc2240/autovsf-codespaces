@@ -1,4 +1,7 @@
+
+<p align="center">
 <img src="/images/autovsf-codespaces.jpg" width="50%" alt="AUTOVSF CODESPACES Banner">
+</p>
 
 # AutoVSF - VideoSubFinder & OCR Pipeline (Codespaces Edition)
 
