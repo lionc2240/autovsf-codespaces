@@ -27,12 +27,6 @@ TXTImages/
 *_out/
 output\ srt/
 
-# Sub-repository templates (Optional, ignored to manage separately)
-autovsf-colab/
-autovsf-termux/
-autovsf-linux/
-AutoVSF_Colab_Edition.ipynb
-
 # IDE files, artifacts
 .vscode/
 .idea/
