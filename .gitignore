@@ -32,6 +32,11 @@ output\ srt/
 .qwen/
 .claude/
 
+# Sub-repository folders (for separate management)
+autovsf-colab/
+autovsf-termux/
+autovsf-linux/
+
 # AI context
 GEMINI.md
 CLAUDE.md

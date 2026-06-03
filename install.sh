@@ -29,12 +29,14 @@ if [[ "$OS_CODENAME" == "noble" ]]; then
     mkdir -p "$LIBS_DIR"
     cd "$LIBS_DIR"
     declare -A DEBS=(
-        ["libaom0"]="http://azure.archive.ubuntu.com/ubuntu/pool/main/a/aom/libaom0_1.0.0.errata1-3+deb11u1ubuntu0.1_amd64.deb"
-        ["libvpx6"]="http://azure.archive.ubuntu.com/ubuntu/pool/main/libv/libvpx/libvpx6_1.8.2-1ubuntu0.4_amd64.deb"
-        ["libx264-155"]="http://azure.archive.ubuntu.com/ubuntu/pool/main/x/x264/libx264-155_0.155.2917+git0a84d98-2_amd64.deb"
-        ["libx265-179"]="http://azure.archive.ubuntu.com/ubuntu/pool/main/x/x265/libx265-179_3.2.1-1build1_amd64.deb"
-        ["libflite1"]="http://azure.archive.ubuntu.com/ubuntu/pool/main/f/flite/libflite1_2.1-release-3_amd64.deb"
-        ["libwavpack1"]="http://azure.archive.ubuntu.com/ubuntu/pool/main/w/wavpack/libwavpack1_5.2.0-1ubuntu0.1_amd64.deb"
+        ["libaom0"]="https://archive.ubuntu.com/ubuntu/pool/universe/a/aom/libaom0_1.0.0.errata1-3build1_amd64.deb"
+        ["libvpx6"]="https://robohub.eng.uwaterloo.ca/mirror/ubuntu/pool/main/libv/libvpx/libvpx6_1.8.2-1ubuntu0.4_amd64.deb"
+        ["libx264-155"]="https://old-releases.ubuntu.com/ubuntu/pool/universe/x/x264/libx264-155_0.155.2917+git0a84d98-2_amd64.deb"
+        ["libx265-179"]="http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/x/x265/libx265-179_3.2.1-1build1_amd64.deb"
+        ["libflite1"]="https://old-releases.ubuntu.com/ubuntu/pool/universe/f/flite/libflite1_2.1-release-3_amd64.deb"
+        ["libwavpack1"]="https://lu.releases.ubuntu.com/ubuntu/pool/main/w/wavpack/libwavpack1_5.2.0-1ubuntu0.1_amd64.deb"
+        ["libwebp6"]="http://security.ubuntu.com/ubuntu/pool/main/libw/libwebp/libwebp6_0.6.1-2ubuntu0.20.04.3_amd64.deb"
+        ["libcodec2-0.9"]="http://security.ubuntu.com/ubuntu/pool/universe/c/codec2/libcodec2-0.9_0.9.2-2_amd64.deb"
     )
     for pkg in "${!DEBS[@]}"; do
         curl -L -o "$pkg.deb" "${DEBS[$pkg]}"
