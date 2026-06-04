@@ -1,65 +1,74 @@
-
 <p align="center">
 <img src="/images/autovsf-codespaces.jpg" width="50%" alt="AUTOVSF CODESPACES Banner">
 </p>
 
 # AutoVSF - VideoSubFinder & OCR Pipeline (Codespaces Edition)
 
-Công cụ hỗ trợ trích xuất phụ đề cứng từ video thông qua VideoSubFinder và nhận diện chữ (OCR) bằng Google Drive API. Phiên bản này được tối ưu hóa đặc biệt cho môi trường **GitHub Codespaces** và **Linux Headless**.
+> 🌐 **[Tiếng Việt](docs/VIE_README.md)**
+
+A tool for extracting hardcoded subtitles from videos using VideoSubFinder and text recognition (OCR) via Google Drive API. This edition is optimized specifically for **GitHub Codespaces** and **Linux Headless** environments.
 
 🔗 **Repository:** [https://github.com/lionc2240/autovsf-codespaces.git](https://github.com/lionc2240/autovsf-codespaces.git)
 
 ---
 
-## 🐧 Hướng dẫn cho GitHub Codespaces
+## 📖 What does `install.sh` do?
 
-Môi trường Codespaces đã được cấu hình tự động. Bạn không cần cài đặt thêm bất kỳ thư viện nào thủ công.
+👉 **See detailed explanation at:** [docs/INSTALL_WHAT_AND_HOW.md](docs/INSTALL_WHAT_AND_HOW.md)
 
-👉 **Xem hướng dẫn chi tiết tại:** [docs/SETUP_CODESPACES.md](docs/SETUP_CODESPACES.md)
+Summary: `install.sh` automatically detects the Ubuntu version, installs system libraries (xvfb, ffmpeg, ...), downloads **VideoSubFinder 6.10**, handles library compatibility for Ubuntu 24.04 Noble, installs Python packages (Google Drive API, OpenCV), and creates a `.run` wrapper script to launch VideoSubFinder in a headless environment.
 
-### 1. Thiết lập Google Cloud (Bắt buộc cho OCR)
-Bạn cần file `credentials.json` để tool có thể sử dụng Google Drive làm bộ máy OCR.
+---
 
-👉 **Xem hướng dẫn chi tiết tại:** [docs/GOOGLE_SETUP.md](docs/GOOGLE_SETUP.md)
+## 🐧 GitHub Codespaces Guide
 
-1. Tạo dự án trên [Google Cloud Console](https://console.cloud.google.com/).
-2. Bật **Google Drive API**.
-3. Tại mục **Credentials**, tạo **OAuth client ID** (Application type: Desktop app).
-4. Tải file JSON về, đổi tên thành `credentials.json` và bỏ vào thư mục gốc.
-5. **Quan trọng:** Nhấn **PUBLISH APP** trong mục OAuth Consent Screen để tránh lỗi xác thực.
+The Codespaces environment is pre-configured automatically. No manual library installation is required.
 
-### 2. Khởi chạy toàn bộ (Scan Video + OCR)
-Chỉ cần 1 lệnh duy nhất để quét video và tạo file phụ đề:
+👉 **See detailed guide at:** [docs/SETUP_CODESPACES.md](docs/SETUP_CODESPACES.md)
+
+### 1. Google Cloud Setup (Required for OCR)
+You need a `credentials.json` file to enable the tool to use Google Drive as the OCR engine.
+
+👉 **See detailed guide at:** [docs/GOOGLE_SETUP.md](docs/GOOGLE_SETUP.md)
+
+1. Create a project on [Google Cloud Console](https://console.cloud.google.com/).
+2. Enable **Google Drive API**.
+3. Under **Credentials**, create an **OAuth client ID** (Application type: Desktop app).
+4. Download the JSON file, rename it to `credentials.json`, and place it in the project root.
+5. **Important:** Click **PUBLISH APP** in the OAuth Consent Screen section to avoid authentication errors.
+
+### 2. Run everything (Scan Video + OCR)
+A single command to scan the video and generate subtitle files:
 ```bash
 python3 headless.py video-test_0.5.mp4
 ```
 
-### 3. Chỉ chạy riêng bước OCR
-Nếu bạn đã có ảnh trong thư mục kết quả (`_out/RGBImages`):
+### 3. Run OCR only
+If you already have images in the output directory (`_out/RGBImages`):
 ```bash
-python3 ocr.py <đường_dẫn_thư_mục_ảnh> [tên_file_output.srt]
+python3 ocr.py <image_directory_path> [output_filename.srt]
 ```
 
-### ⚠️ Cách xác thực Google trên Codespaces (Mẹo quan trọng)
-Do Google chặn phương thức đăng nhập cũ (OOB), tool sử dụng phương thức **Manual Link Paste**:
-1. Khi chạy tool, nhấn vào link **Auth URL** hiện ra trên terminal.
-2. Đăng nhập và nhấn **Allow**.
-3. Trình duyệt sẽ chuyển đến một trang báo lỗi (ví dụ: `http://localhost:8080/?state=...`).
-4. **Copy toàn bộ địa chỉ URL** của trang lỗi đó từ thanh địa chỉ trình duyệt.
-5. Quay lại Terminal, dán vào dòng **Paste URL here** và nhấn Enter.
-6. Token sẽ được lưu vào `token.json` để sử dụng mãi mãi về sau.
+### ⚠️ Google Authentication on Codespaces (Important Tip)
+Since Google has deprecated the old OOB redirect method, the tool uses **Manual Link Paste** authentication:
+1. When running the tool, click the **Auth URL** link displayed in the terminal.
+2. Sign in and click **Allow**.
+3. Your browser will redirect to an error page (e.g., `http://localhost:8080/?state=...`).
+4. **Copy the entire URL** from the browser's address bar.
+5. Go back to the Terminal, paste it at the **Paste URL here** prompt, and press Enter.
+6. The token will be saved to `token.json` for future use.
 
 ---
 
-## 🌟 Tính năng nổi bật
-- **Tối ưu cho Codespaces:** Chạy mượt mà trong môi trường Linux Headless.
-- **Tối ưu tốc độ:** Hỗ trợ đa luồng (multi-threading) cho OCR, xử lý hàng trăm ảnh chỉ trong vài giây.
-- **Tự động hóa:** Tích hợp quy trình từ lúc đọc video đến lúc xuất file `.srt` hoàn chỉnh.
-- **Thông minh:** ETA thời gian thực, tự động quản lý token và dọn dẹp thư mục tạm.
+## 🌟 Key Features
+- **Codespaces-optimized:** Runs smoothly in Linux Headless environments.
+- **Speed-optimized:** Multi-threaded OCR processing — hundreds of images in seconds.
+- **Automated:** End-to-end pipeline from video input to complete `.srt` file output.
+- **Smart:** Real-time ETA, automatic token management, and temporary directory cleanup.
 
 ---
 
-## ⚠️ Lưu ý chung
-- Đảm bảo dự án Google Cloud đã được chuyển sang trạng thái **In Production**.
-- Thư mục ảnh mặc định từ VideoSubFinder là `RGBImages`.
-- Luôn giữ file `credentials.json` bảo mật.
+## ⚠️ General Notes
+- Make sure your Google Cloud project is set to **In Production** status.
+- The default image output directory from VideoSubFinder is `RGBImages`.
+- Always keep your `credentials.json` file secure.

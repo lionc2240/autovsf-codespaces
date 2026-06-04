@@ -1,16 +1,16 @@
-# 🎬 AutoVSF Codespaces Edition - Hướng dẫn sử dụng sau 6 tháng
+# 🎬 AutoVSF Codespaces Edition — Quick Start Guide
 
-Chào bạn! Nếu bạn đang đọc file này sau một thời gian dài không sử dụng, đây là những gì bạn cần làm để khởi động lại hệ thống trong 5 phút.
+Welcome back! If you haven't used this tool in a while, here's everything you need to get the system up and running in 5 minutes.
 
 🔗 **Repo:** [https://github.com/lionc2240/autovsf-codespaces.git](https://github.com/lionc2240/autovsf-codespaces.git)
 
-> ⚠️ Lưu ý: Khởi chạy Codespaces lần đầu sẽ mất khoảng 10 phút để build môi trường.
+> ⚠️ Note: The first time you launch a Codespace, it may take about 10 minutes to build the environment.
 
 ---
 
-## 🚀 1. Khởi tạo lại môi trường (Mỗi lần tạo Codespace mới)
+## 🚀 1. Initialize the Environment (Each new Codespace)
 
-Nếu bạn tạo một Codespace mới hoàn toàn, hãy dán lệnh này để tự động cài đặt tất cả (Thư viện Ubuntu Focal, Python, VideoSubFinder):
+If you're creating a brand new Codespace, run this command to automatically install everything (Ubuntu libraries, Python packages, VideoSubFinder):
 
 ```bash
 chmod +x install.sh && ./install.sh
@@ -18,56 +18,57 @@ chmod +x install.sh && ./install.sh
 
 ---
 
-## 🔑 2. Cấu hình Quan trọng (Bắt buộc)
+## 🔑 2. Important Configuration (Required)
 
-Bạn cần 1 file duy nhất để tool hoạt động:
-- **`credentials.json`**: Lấy từ Google Cloud Console (Drive API). Hãy upload file này vào đúng thư mục gốc của repo này.
+You need one file for the tool to work:
+- **`credentials.json`**: Obtain from Google Cloud Console (Drive API). Upload this file to the project root directory.
 
 ---
 
-## ⚡ 3. Cách chạy nhanh nhất (Headless CLI)
+## ⚡ 3. Quickest Way to Run (Headless CLI)
 
-Vì Codespaces không có màn hình, bạn sẽ dùng lệnh để tool tự chạy ngầm:
+Since Codespaces has no display, you'll use commands to run the tool in the background:
 
-### Quét Video + OCR tự động (Full Quy trình):
+### Full Pipeline (Scan Video + OCR):
 ```bash
-python3 headless.py ten_video_cua_ban.mp4
+python3 headless.py your_video_file.mp4
 ```
 
-### Chỉ chạy riêng bước OCR (Nếu đã có ảnh trong thư mục _out):
+### Run OCR Only (if images already exist in `_out`):
 ```bash
-python3 ocr.py <duong_dan_thu_muc_anh> [file_ket_qua.srt]
+python3 ocr.py <image_directory_path> [output_file.srt]
 ```
 
 ---
 
-## ⚠️ 4. Tuyệt chiêu "Vượt rào" xác thực Google (QUAN TRỌNG)
+## ⚠️ 4. Google Authentication Trick (IMPORTANT)
 
-Google đã chặn phương thức dán mã (OOB), nên khi tool yêu cầu đăng nhập lần đầu, hãy làm đúng 4 bước "mẹo" sau:
+Google has deprecated the old OOB code method, so the tool now uses **Manual Link Paste** authentication. When logging in for the first time, follow these 4 steps:
 
-1.  **Mở link:** Nhấn vào link **Auth URL** tool in ra trên terminal.
-2.  **Đăng nhập:** Trên trình duyệt, nhấn **Allow**. Bạn sẽ thấy trang báo lỗi trắng (localhost).
-3.  **Copy Link lỗi:** Copy toàn bộ địa chỉ URL trên thanh địa chỉ (ví dụ: `http://localhost:8080/?state=...&code=...`).
-4.  **Dán vào Terminal:** Quay lại Codespace, dán toàn bộ cái link đó vào dòng **Paste URL here** rồi nhấn Enter.
+1.  **Open the link:** Click the **Auth URL** link printed in the terminal.
+2.  **Sign in:** In your browser, click **Allow**. You'll see a blank error page (localhost).
+3.  **Copy the error URL:** Copy the entire URL from the browser's address bar (e.g., `http://localhost:8080/?state=...&code=...`).
+4.  **Paste into Terminal:** Go back to your Codespace, paste the full URL at the **Paste URL here** prompt, and press Enter.
 
-✅ **Xong!** Token sẽ được lưu vào `token.json`, từ video thứ 2 trở đi bạn không phải làm lại bước này.
-
----
-
-## 📁 5. Kết quả nằm ở đâu?
-
-- Mọi kết quả (ảnh, file srt tạm) nằm trong thư mục: `tên_video_out/`.
-- File phụ đề cuối cùng sẽ cùng tên với video, định dạng `.srt`.
+✅ **Done!** The token will be saved to `token.json`. From the second video onward, you won't need to repeat this step.
 
 ---
 
-## 🧹 6. Dọn dẹp để tiết kiệm dung lượng
+## 📁 5. Where Are the Results?
 
-Codespaces có giới hạn ổ đĩa. Sau khi xong việc, hãy xóa các thư mục ảnh nặng bằng lệnh:
+- All output (images, temp srt files) is in the `your_video_out/` directory.
+- The final subtitle file will have the same name as the video, with a `.srt` extension.
+
+---
+
+## 🧹 6. Clean Up to Save Space
+
+Codespaces have disk space limits. After finishing, delete heavy image directories with:
+
 ```bash
 rm -rf *_out/
 ```
 
 ---
 
-*Chúc bạn 6 tháng tới làm việc hiệu quả! Mọi thứ đã được tối ưu cho Ubuntu 20.04 Focal chuẩn.*
+*Happy subtitle extracting! Everything is optimized for standard Ubuntu 20.04 Focal.*
