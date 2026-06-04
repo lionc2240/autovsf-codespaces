@@ -4,7 +4,7 @@
 
 # AutoVSF - VideoSubFinder & OCR Pipeline (Codespaces Edition)
 
-> 🌐 **[Tiếng Việt](docs/VIE_README.md)**
+> 🌐 **[Tiếng Việt](docs/VIE_README.md)** | **[中文](docs/CN_README.md)**
 
 A tool for extracting hardcoded subtitles from videos using VideoSubFinder and text recognition (OCR) via Google Drive API. This edition is optimized specifically for **GitHub Codespaces** and **Linux Headless** environments.
 
@@ -65,6 +65,18 @@ Since Google has deprecated the old OOB redirect method, the tool uses **Manual 
 - **Speed-optimized:** Multi-threaded OCR processing — hundreds of images in seconds.
 - **Automated:** End-to-end pipeline from video input to complete `.srt` file output.
 - **Smart:** Real-time ETA, automatic token management, and temporary directory cleanup.
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="images/autovsf-codespaces_running.jpg" width="55%" alt="AutoVSF Codespaces Running">
+</p>
+
+<p align="center">
+  <img src="images/autovsf-codespaces_ocr.jpg" width="55%" alt="AutoVSF Codespaces OCR">
+</p>
 
 ---
 

@@ -71,6 +71,18 @@ Do Google chặn phương thức đăng nhập cũ (OOB), tool sử dụng phư�
 
 ---
 
+## 📸 Ảnh chụp màn hình
+
+<p align="center">
+  <img src="../images/autovsf-codespaces_running.jpg" width="55%" alt="AutoVSF Codespaces Running">
+</p>
+
+<p align="center">
+  <img src="../images/autovsf-codespaces_ocr.jpg" width="55%" alt="AutoVSF Codespaces OCR">
+</p>
+
+---
+
 ## ⚠️ Lưu ý chung
 - Đảm bảo dự án Google Cloud đã được chuyển sang trạng thái **In Production**.
 - Thư mục ảnh mặc định từ VideoSubFinder là `RGBImages`.
