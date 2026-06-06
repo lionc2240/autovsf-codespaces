@@ -11,6 +11,10 @@
 
 Công cụ hỗ trợ trích xuất phụ đề cứng từ video thông qua VideoSubFinder và nhận diện chữ (OCR) bằng Google Drive API. Phiên bản này được tối ưu hóa đặc biệt cho môi trường **GitHub Codespaces** và **Linux Headless**.
 
+🔗 **Phiên bản chính (Windows):** [![GitHub](https://img.shields.io/badge/GitHub-Xem_trên_GitHub-blue?logo=github)](https://github.com/lionc2240/autovsf)
+🔗 **Phiên bản Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lionc2240/autovsf-colab/blob/main/AutoVSF_Colab_Edition.ipynb?hl=vi)
+
+
 🔗 **Repository:** [https://github.com/lionc2240/autovsf-codespaces.git](https://github.com/lionc2240/autovsf-codespaces.git)
 
 ---

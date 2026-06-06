@@ -11,6 +11,10 @@
 
 通过 VideoSubFinder 和 Google Drive API OCR 从视频中提取硬字幕。此版本专门针对 **GitHub Codespaces** 和 **Linux 无头 (Headless) 环境** 进行了优化。
 
+🔗 **主版本 (Windows)：** [![GitHub](https://img.shields.io/badge/GitHub-在_GitHub_上查看-blue?logo=github)](https://github.com/lionc2240/autovsf)
+🔗 **Colab 版：** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lionc2240/autovsf-colab/blob/main/AutoVSF_Colab_Edition.ipynb?hl=vi)
+
+
 🔗 **仓库：** [https://github.com/lionc2240/autovsf-codespaces.git](https://github.com/lionc2240/autovsf-codespaces.git)
 
 ---

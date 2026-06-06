@@ -6,6 +6,10 @@
 
 > 🌐 **[Tiếng Việt](docs/VIE_README.md)** | **[中文](docs/CN_README.md)**
 
+🔗 **Main Edition (Windows):** [![GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=github)](https://github.com/lionc2240/autovsf)
+🔗 **Colab Edition:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lionc2240/autovsf-colab/blob/main/AutoVSF_Colab_Edition.ipynb?hl=vi)
+
+
 A tool for extracting hardcoded subtitles from videos using VideoSubFinder and text recognition (OCR) via Google Drive API. This edition is optimized specifically for **GitHub Codespaces** and **Linux Headless** environments.
 
 🔗 **Repository:** [https://github.com/lionc2240/autovsf-codespaces.git](https://github.com/lionc2240/autovsf-codespaces.git)
